@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import hashlib, os, string
+import base64
 from codecs import encode
 
 # colors
@@ -15,13 +16,20 @@ ascii_list = ascii_letters
 
 def derot13():
     rot = str(input(P+' Input Cipher '+R+'> '+W))
-    print(R+'> '+ (encode(rot, 'rot_13')))
+    print(R+' > '+ (encode(rot, 'rot_13')))
     main()
 
 def hex2ascii():
     hex = str(input(P+' Input Hex '+R+'> '+W))
-    print(R+'> ' + (bytes.fromhex(hex).decode('utf-8')))
+    print(R+' > '+ (bytes.fromhex(hex).decode('utf-8')))
     main()
+
+def debase64():
+    text = str(input(P+' Input Base64 '+R+'> '+W))
+    base64_bytes = text.encode('ascii')
+    message_bytes = base64.b64decode(base64_bytes)
+    decode = message_bytes.decode('ascii')
+    print(R+'> '+ (decode))
 
 def banner() :
     os.system('clear')
@@ -37,6 +45,7 @@ def menu() :
         print ('')
         print (R+' [1]'+P+' Decode ROT13 Cipher')
         print (R+' [2]'+P+' Decode Hex to ASCII')
+        print (R+' [3]'+P+' Decode Base64')
 
 def main() :
     print ('')
@@ -54,6 +63,8 @@ def main() :
         derot13()
     elif cmd == 'hex' or cmd == '2' :
         hex2ascii()
+    elif cmd == 'base64' or cmd == '3' :
+        debase64()
     else :
         print ('')
         print (P+" Command "+cmd+" Not Found")
