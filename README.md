@@ -1,6 +1,6 @@
 ## Kurcoder - A lightweight encoding & decoding tool [BETA v1.0]
 
-## Available Options:
+### Available Options:
 - ROT13 Decoder
 - Hex to ASCII
 
