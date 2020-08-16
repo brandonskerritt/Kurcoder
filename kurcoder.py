@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
-import hashlib, os, string
+import os
+import hashlib
+import string
 import base64
+import ipcalc
 from codecs import encode
 
 # colors
@@ -30,6 +33,15 @@ def ascii2hex():
     print(R+' > '+ (hex_text))
     main()
 
+# Encodes Base64
+def enbase64():
+    encode_text = str(input(P+' Input Base64 to encode '+R+'> '+W))
+    message_bytes = encode_text.encode('ascii')
+    base64_bytes = base64.b64encode(message_bytes)
+    encode_message = base64_bytes.decode('ascii')
+    print(R+'> '+ (encode_message))
+    main()
+
 # Decodes Base64
 def debase64():
     decode_text = str(input(P+' Input Base64 to decode '+R+'> '+W))
@@ -39,13 +51,12 @@ def debase64():
     print(R+'> '+ (decode))
     main()
 
-# Encodes Base64
-def enbase64():
-    encode_text = str(input(P+' Input Base64 to encode '+R+'> '+W))
-    message_bytes = encode_text.encode('ascii')
-    base64_bytes = base64.b64encode(message_bytes)
-    encode_message = base64_bytes.decode('ascii')
-    print(R+'> '+ (encode_message))
+# CIDR Calculator
+def cidr():
+    cidr = str(input(P+' Input IP with subnet '+R+'> '+W))
+    subnet = ipcalc.Network(cidr)
+    for c in subnet: 
+        print(R+'> '+ str(c))
     main()
 
 def banner() :
@@ -65,6 +76,8 @@ def menu() :
         print (R+' [3]'+P+' Convert ASCII to Hexadecimal')
         print (R+' [4]'+P+' Encode Base64')
         print (R+' [5]'+P+' Decode Base64')
+        print ('  -  ')
+        print (R+' [6]'+P+' IP Subnet Calculator')
 
 def main() :
     print ('')
@@ -87,6 +100,8 @@ def main() :
         enbase64()
     elif cmd == '5' :
         debase64()
+    elif cmd == 'cidr' or cmd == '6' :
+        cidr()
     else :
         print ('')
         print (P+" Command "+cmd+" Not Found")
