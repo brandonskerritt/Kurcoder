@@ -11,10 +11,12 @@ A lightweight encoding & decoding tool [BETA v1.0]
 - Base64 Decoder
 - IP Subnet (CIDR) Calculator
 ## Install
+`Kurcoder` is built for 3.8+, and tested on mac)S/Linux.
 
-__Manual:__
+To install and use `Kurcoder`, you can build locally:
 ```
-$ git clone https://github.com/0xkurome/Kurcoder.git && cd Kurcoder
+$ git clone https://github.com/0xkurome/Kurcoder.git 
+$ cd Kurcoder/
 $ python3 kurcoder.py
 ```
 

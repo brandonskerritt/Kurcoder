@@ -15,49 +15,73 @@ C  = '\033[1;36m' # cyan
 
 # Decodes ROT13
 def derot13():
-    rot = str(input(P+' Input Cipher '+R+'> '+W))
-    print(R+' > '+ (encode(rot, 'rot_13')))
-    main()
+    try:
+        rot = str(input(P+' Input Cipher '+R+'> '+W))
+        print(R+' > '+ (encode(rot, 'rot_13')))
+        main()
+    except Exception:
+        print(R+'\n Incorrect Cipher, Please try again ')
+    derot13()
 
 # Converts Hex to ASCII
 def hex2ascii():
-    ascii = str(input(P+' Input Hexadecimal '+R+'> '+W))
-    print(R+' > '+ (bytes.fromhex(ascii).decode('utf-8')))
-    main()
+    try:
+        ascii = str(input(P+' Input Hexadecimal '+R+'> '+W))
+        print(R+' > '+ (bytes.fromhex(ascii).decode('utf-8')))
+        main()
+    except Exception:
+        print(R+'\n Incorrect Hexadecimal, Please try again ')
+    hex2ascii()
 
 # Converts ASCII to Hex
 def ascii2hex():
-    hex = str(input(P+' Input ASCII '+R+'> '+W))
-    hex_binary = hex.encode(encoding='utf_8')
-    hex_text = hex_binary.hex()
-    print(R+' > '+ (hex_text))
-    main()
+    try:
+        hex = str(input(P+' Input ASCII '+R+'> '+W))
+        hex_binary = hex.encode(encoding='utf_8')
+        hex_text = hex_binary.hex()
+        print(R+' > '+ (hex_text))
+        main()
+    except Exception:
+        print(R+'\n Incorrect ASCII, Please try again ')
+    ascii2hex()
 
 # Encodes Base64
 def enbase64():
-    encode_text = str(input(P+' Input Base64 to encode '+R+'> '+W))
-    message_bytes = encode_text.encode('ascii')
-    base64_bytes = base64.b64encode(message_bytes)
-    encode_message = base64_bytes.decode('ascii')
-    print(R+'> '+ (encode_message))
-    main()
+    try:
+        encode_text = str(input(P+' Input Base64 to encode '+R+'> '+W))
+        message_bytes = encode_text.encode('ascii')
+        base64_bytes = base64.b64encode(message_bytes)
+        encode_message = base64_bytes.decode('ascii')
+        print(R+'> '+ (encode_message))
+        main()
+    except Exception:
+        print(R+'\n Incorrect ASCII, Please try again')
+    enbase64()
 
 # Decodes Base64
 def debase64():
-    decode_text = str(input(P+' Input Base64 to decode '+R+'> '+W))
-    base64_bytes = decode_text.encode('ascii')
-    message_bytes = base64.b64decode(base64_bytes)
-    decode = message_bytes.decode('ascii')
-    print(R+'> '+ (decode))
-    main()
+    try:
+        decode_text = str(input(P+' Input Base64 to decode '+R+'> '+W))
+        base64_bytes = decode_text.encode('ascii')
+        message_bytes = base64.b64decode(base64_bytes)
+        decode = message_bytes.decode('ascii')
+        print(R+'> '+ (decode))
+        main()
+    except Exception:
+        print(R+'\n Incorrect base64, Please try again')
+    debase64()
 
 # CIDR Calculator
 def cidr():
-    cidr = str(input(P+' Input IP with subnet '+R+'> '+W))
-    subnet = ipcalc.Network(cidr)
-    for c in subnet: 
-        print(R+'> '+ str(c))
-    main()
+    try:
+        cidr = str(input(P+' Input IP with subnet '+R+'> '+W))
+        subnet = ipcalc.Network(cidr)
+        for c in subnet: 
+            print(R+'> '+ str(c))
+        main()
+    except Exception:
+        print(R+'\n Incorrect IP/Subnet, Please try again ')
+    cidr()
 
 def banner() :
     os.system('clear')
@@ -104,7 +128,7 @@ def main() :
         cidr()
     else :
         print ('')
-        print (P+" Command "+cmd+" Not Found")
+        print (P+" Command [ "+R+"" +cmd+ ""+P+" ] Not Found")
         main()
 
 banner()
