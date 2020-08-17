@@ -1,6 +1,6 @@
 # Kurcoder
 
-A lightweight encoding & decoding tool [BETA v1.0]
+A lightweight encoding & decoding tool [v.0.0.1]
 
 
 ### Available Options:
