@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import sys
 import hashlib
 import string
 import base64
@@ -74,14 +75,26 @@ def debase64():
 # CIDR Calculator
 def cidr():
     try:
-        cidr = str(input(P+' Input IP with subnet '+C+'> '+W))
-        subnet = ipcalc.Network(cidr)
-        for c in subnet: 
+        cidr_result = str(input(P+' Input IP with subnet '+C+'> '+W))
+        subnet = ipcalc.Network(cidr_result)
+        for c in subnet:
             print(C+'> '+ str(c))
-        main()
+        cmd = str(input(C+"Do you want to save this to a file called [ "+P+"subnet.txt"+C+" ] ? [ "+P+"Yes"+C+" ] or [ "+P+"No"+C+" ]\n \n > "+W))
+        if cmd == 'y' or cmd == 'yes' or cmd == 'Yes' :
+            with open('subnet.txt', 'a+') as f:
+                for c in subnet:
+                    f.write(str(c) + '\n')
+            main()
+        elif cmd == 'n' or cmd == 'no' or cmd == 'No' :
+            main()
+        else:
+            main()
     except Exception:
-        print(C+'\n Incorrect IP/Subnet, Please try again ')
+        print(C + "\n Incorrect IP/Subnet, Please try again ")
     cidr()
+
+# def subnet_results():
+    
 
 def banner() :
     os.system('clear')
@@ -105,7 +118,7 @@ def menu() :
 
 def main() :
     print ('')
-    cmd = str(input(P+" Type [ "+C+"menu"+C+" ] to see available options\n Type [ "+C+"exit"+P+" ] to close the program\n \n > "+W))
+    cmd = str(input(C+" Type [ "+P+"menu"+C+" ] to see available options\n Type [ "+P+"exit"+C+" ] to close the program\n \n > "+W))
     if cmd == 'exit' or cmd == 'quit' or cmd == 'q' or cmd == '-q' :
         exit()
     elif cmd == 'menu' or cmd == 'm' :
