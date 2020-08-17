@@ -11,7 +11,7 @@ A lightweight encoding & decoding tool [BETA v1.0]
 - Base64 Decoder
 - IP Subnet (CIDR) Calculator
 ## Install
-`Kurcoder` is built for 3.8+, and tested on mac)S/Linux.
+`Kurcoder` is built for 3.8+, and tested on macOS/Linux.
 
 To install and use `Kurcoder`, you can build locally:
 ```
