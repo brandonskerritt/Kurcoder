@@ -86,8 +86,12 @@ def cidr():
     elif cmd == 'n' or cmd == 'no' or cmd == 'No' :
         main()
 
-# def subnet_results():
-    
+# IP to Binary
+def ip2bin():
+    ip2bin_text = str(input(P+' Input IP '+C+'> '+W))
+    ip2bin_result = '.'.join(map(str,['{0:08b}'.format(int(x)) for x in ip2bin_text.split('.')]))
+    print(C+'> '+ (ip2bin_result))
+    main()
 
 def banner() :
     os.system('clear')
@@ -110,6 +114,7 @@ def menu() :
         print (C+' [7]'+P+' Decode ASCII85')
         print ('  -  ')
         print (C+' [8]'+P+' IP Subnet Calculator')
+        print (C+' [9]'+P+' Convert IP to Binary')
 
 def main() :
     print ('')
@@ -119,39 +124,63 @@ def main() :
     elif cmd == 'menu' or cmd == 'm' :
         menu()
         main()
-    elif cmd == 'clear' :
+    elif cmd == 'clear' or cmd == 'c' :
         banner()
         main()
-    elif cmd == 'rot13' or cmd == '1' :
+    elif cmd == '1' :
+        try:
             derot13()
-            print(C+'\n Incorrect Cipher, Please try again ')
+        except Exception:
+            print(C+'\n Incorrect format, Please try again ')
             derot13()
-    elif cmd == 'ascii' or cmd == '2' :
+    elif cmd == '2' :
+        try:
             hex2ascii()
-            print(C+'\n Incorrect Hexadecimal, Please try again ')
+        except Exception:
+            print(C+'\n Incorrect format, Please try again ')
             hex2ascii()
-    elif cmd == 'hex' or cmd == '3' :
+    elif cmd == '3' :
+        try:
             ascii2hex()
+        except Exception:
             print(C+'\n Incorrect format, Please try again ')
             ascii2hex()
     elif cmd == '4' :
+        try:
             enbase64()
+        except Exception:
             print(C+'\n Incorrect format, Please try again ')
             enbase64()
     elif cmd == '5' :
+        try:
             debase64()
-            print(C+'\n Incorrect Base64, Please try again ')
+        except Exception:
+            print(C+'\n Incorrect format, Please try again ')
             debase64()
     elif cmd == '6' :
+        try:
             enbase85()
+        except Exception:
             print(C+'\n Incorrect format, Please try again ')
+            enbase85()
     elif cmd == '7' :
+        try:
             debase85()
+        except Exception:
             print(C+'\n Incorrect ASCII85, Please try again ')
-    elif cmd == 'cidr' or cmd == '8' :
+            debase85()
+    elif cmd == '8' :
+        try:
             cidr()
-            print(C+'\n Incorrect Cipher, Please try again ')
+        except Exception:
+            print(C+'\n Incorrect format, Please try again ')
             cidr()
+    elif cmd == '9' :
+        try:
+            ip2bin()
+        except Exception:
+            print(C+'\n Incorrect format, Please try again ')
+            ip2bin()
     else :
         print ('')
         print (P+" Command [ "+C+"" +cmd+ ""+P+" ] Not Found")
@@ -159,3 +188,4 @@ def main() :
 
 banner()
 main()
+
