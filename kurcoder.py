@@ -93,8 +93,12 @@ def ip2bin():
     print(C+'> '+ (ip2bin_result))
     main()
 
-def banner() :
-    os.system('clear')
+def banner():
+    try:
+        os.system('cls')
+        raise ValueError('Error')
+    except Exception:
+        os.system('clear')
     print ('')
     print (C+'  Welcome to Kurcoder v.0.0.1')
     print ('')
@@ -103,7 +107,7 @@ def banner() :
     print (P+'     Insta:  ['+C+'0xkurome'+P+']')
     print ('')
 
-def menu() :
+def menu():
         print ('')
         print (C+' [1]'+P+' Decode ROT13 Cipher')
         print (C+' [2]'+P+' Convert Hexadecimal to ASCII')
@@ -116,7 +120,7 @@ def menu() :
         print (C+' [8]'+P+' IP Subnet Calculator')
         print (C+' [9]'+P+' Convert IP to Binary')
 
-def main() :
+def main():
     print ('')
     cmd = str(input(C+" Type [ "+P+"menu"+C+" ] to see available options\n Type [ "+P+"exit"+C+" ] to close the program\n \n > "+W))
     if cmd == 'exit' or cmd == 'quit' or cmd == 'q' or cmd == '-q' :
