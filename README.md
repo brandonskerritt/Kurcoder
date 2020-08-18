@@ -15,7 +15,7 @@ A lightweight encoding & decoding tool [v.0.0.1]
 - IP to Binary
 
 ## Install
-`Kurcoder` is built for 3.6+, and tested on macOS/Linux.
+`Kurcoder` is built for 3.6+, and tested on macOS/Linux, but should work on Windows
 
 To install and use `Kurcoder`, you can build locally:
 ```
