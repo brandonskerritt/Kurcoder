@@ -41,7 +41,7 @@ def hexdumper():
     try:
         filedump = open(filename, 'rb')
     except:
-        print(C+' File not found. Please verify the filename, and the file is in your current directory'+W) #+W, sys.exc_info()[0])
+        print(C+' File not found. Please verify filename, and the file is in your current directory'+W) #+W, sys.exc_info()[0])
         hexdumper()
     counter = 0
     offset = 0
@@ -99,6 +99,19 @@ def hexdumper():
     else:
         print('')
 
+# Check MD5 checksum
+def md5sum():
+    filename = str(input(P+' Input filename to Checksum: '+C+'> '+W))    
+    hash_md5 = hashlib.md5()
+    hash_sha1 = hashlib.sha1()
+    with open(filename, 'rb') as f:
+        for chunk in iter(lambda: f.read(4096), b''):
+            hash_md5.update(chunk)
+            hash_sha1.update(chunk)
+        print(P+' MD5 Checksum  '+C+'> '+ (hash_md5.hexdigest()))
+        print(P+' SHA1 Checksum '+C+'> '+(hash_sha1.hexdigest()))
+        main()
+
 # Encodes Base64
 def enbase64():
     encode_text = str(input(P+' Input Base64 to encode '+C+'> '+W))
@@ -113,8 +126,8 @@ def debase64():
     decode_text = str(input(P+' Input Base64 to decode '+C+'> '+W))
     base64_bytes = decode_text.encode('ascii')
     message_bytes = base64.b64decode(base64_bytes)
-    decode = message_bytes.decode('ascii')
-    print(C+'> '+ (decode))
+    decode_message = message_bytes.decode('ascii')
+    print(C+'> '+ (decode_message))
     main()
 
 # Encodes ASCII85
@@ -131,8 +144,8 @@ def debase85():
     decode_text = str(input(P+' Input ASCII85 to decode '+C+'> '+W))
     base85_bytes = decode_text.encode('ascii')
     message_bytes = base64.a85decode(base85_bytes)
-    decode = message_bytes.decode('ascii')
-    print(C+'> '+ (decode))
+    decode_message = message_bytes.decode('ascii')
+    print(C+'> '+ (decode_message))
     main()
 
 # CIDR Calculator
@@ -176,14 +189,16 @@ def menu():
         print (C+' [1]'+P+' Decode ROT13 Cipher')
         print (C+' [2]'+P+' Convert Hexadecimal to ASCII')
         print (C+' [3]'+P+' Convert ASCII to Hexadecimal')
-        print (C+' [4]'+P+' Hexdump a file (file must be in current dir)')
-        print (C+' [5]'+P+' Encode Base64')
-        print (C+' [6]'+P+' Decode Base64')
-        print (C+' [7]'+P+' Encode ASCII85')
-        print (C+' [8]'+P+' Decode ASCII85')
+        print (C+' [4]'+P+' Hexdump a file ['+C+' File must be in current dir '+P+']')
+        print (C+' [5]'+P+' MD5 & SHA1 checksum ['+C+' File must be in current dir '+P+']')
+        print (C+' [6]'+P+' Encode Base64')
+        print (C+' [7]'+P+' Decode Base64')
+        print (C+' [8]'+P+' Encode ASCII85')
+        print (C+' [9]'+P+' Decode ASCII85')
         print ('  -  ')
-        print (C+' [9]'+P+' IP Subnet Calculator')
-        print (C+' [10]'+P+' Convert IP to Binary')
+        print (C+' [10]'+P+' IP Subnet Calculator')
+        print (C+' [11]'+P+' Convert IP to Binary')
+        
 
 def main():
     print ('')
@@ -222,40 +237,46 @@ def main():
             hexdumper()
     elif cmd == '5' :
         try:
-            enbase64()
+            md5sum()
         except Exception:
-            print(C+'\n Incorrect format, Please try again ')
-            enbase64()
+            print(C+'\n Incorrect file, Please try again ')
     elif cmd == '6' :
         try:
+            enbase64()
+        except Exception:
+            print(C+'\n Incorrect format, Please try again ')
+            enbase64()
+    elif cmd == '7' :
+        try:
             debase64()
         except Exception:
             print(C+'\n Incorrect format, Please try again ')
             debase64()
-    elif cmd == '7' :
+    elif cmd == '8' :
         try:
             enbase85()
         except Exception:
             print(C+'\n Incorrect format, Please try again ')
             enbase85()
-    elif cmd == '8' :
+    elif cmd == '9' :
         try:
             debase85()
         except Exception:
             print(C+'\n Incorrect ASCII85, Please try again ')
             debase85()
-    elif cmd == '9' :
-        try:
-            cidr()
-        except Exception:
-            print(C+'\n Incorrect format, Please try again ')
-            cidr()
     elif cmd == '10' :
         try:
+            cidr()
+        except Exception:
+            print(C+'\n Incorrect format, Please try again ')
+            cidr()
+    elif cmd == '11' :
+        try:
             ip2bin()
         except Exception:
             print(C+'\n Incorrect format, Please try again ')
             ip2bin()
+
     else :
         print ('')
         print (P+" Command [ "+C+"" +cmd+ ""+P+" ] Not Found")
