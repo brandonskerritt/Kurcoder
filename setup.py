@@ -12,27 +12,26 @@ import setuptools
 NAME = "kurcoder"
 VERSION = "0.0.1"
 
-REPO = "https://github.com/0xkurome/Kurcoder"
 DESC = "Simple encoder & decoder tool"
+REPO = "https://github.com/0xkurome/Kurcoder"
 
 # main
 setuptools.setup(
         name = NAME,
         version = VERSION,
-        author = '0xkurome',
+        author = "0xkurome",
         description = DESC,
-        license = 'MIT'
-        url = REPO,
-        package_dir={'': 'src'},
-        install_requires=[
+        license = "MIT",
+        url=REPO,
+        download_url="{}/archive/v{}".format(REPO, VERSION),
+        install_requires = [
             "ipcalc",
         ],
-        classifiers=[
-            "Development Status :: 1 - Planning",
+        classifiers = [
+            "Development Status :: 5 - Production/Stable",
             "Intended Audience :: End Users/Desktop",
             "Environment :: Console",
             "Natural Language :: English",
-            "Programming Language :: Python",
             "Programming Language :: Python :: 3",
         ]
 )
