@@ -41,7 +41,7 @@ def hexdumper():
     try:
         filedump = open(filename, 'rb')
     except:
-        print(C+'File not found. Please verify the filename, and the file is in your current directory'+W) #+W, sys.exc_info()[0])
+        print(C+' File not found. Please verify the filename, and the file is in your current directory'+W) #+W, sys.exc_info()[0])
         hexdumper()
     counter = 0
     offset = 0
@@ -49,7 +49,7 @@ def hexdumper():
     asciiList = []
     i = 1
     if len(byte) == 0:              # checks if the file is empty
-        print(C+'File is empty, Please try again'+W)
+        print(C+' File is empty, Please try again'+W)
         hexdumper()
     print(C+'%08x ' % (offset), end = ' ')
     offset += int(len(byte))
