@@ -23,8 +23,9 @@ setuptools.setup(
         description = DESC,
         license = 'MIT'
         url = REPO,
+        package_dir={'': 'src'},
         install_requires=[
-            ipcalc
+            "ipcalc",
         ],
         classifiers=[
             "Development Status :: 1 - Planning",
