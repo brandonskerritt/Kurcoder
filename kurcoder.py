@@ -35,6 +35,70 @@ def ascii2hex():
     print(C+' > '+ (hex_text))
     main()
 
+# Hexdump
+def hexdumper():
+    filename = str(input(P+' Input filename to hexdump: '+C+'> '+W))
+    try:
+        filedump = open(filename, 'rb')
+    except:
+        print(C+'File not found. Please verify the filename, and the file is in your current directory'+W) #+W, sys.exc_info()[0])
+        hexdumper()
+    counter = 0
+    offset = 0
+    byte = filedump.read(8)
+    asciiList = []
+    i = 1
+    if len(byte) == 0:              # checks if the file is empty
+        print(C+'File is empty, Please try again'+W)
+        hexdumper()
+    print(C+'%08x ' % (offset), end = ' ')
+    offset += int(len(byte))
+    while len(byte)>0:
+        for b in byte:
+            print('%02x' %b, end = ' ')
+            c = chr(b)
+            asciiList.append(c)
+        print(' ', end = '')
+        if len(asciiList)>=16:      # prints ascii values of hex
+            print('|', end = '')
+            for c in asciiList:
+                if ord(c) < 33:
+                    print ('.',end ='')
+                elif ord(c) > 126:
+                    print ('.',end='')
+                else:
+                    print(c,end ='')
+            print('|',end='')
+            asciiList[:] = []
+        if (offset % 16 == 0):      # pints previous bits
+                print('')
+                print('%08x ' % (offset), end = ' ')
+        prev = byte                 # refreshes all values 
+        byte = filedump.read(8)
+        offset += int(len(byte))
+    if asciiList:                   # verifies if a list has a value inside
+        if (offset % 16 < 8):       # formats the last line if less than 8 bytes are read
+            while i <= 25:
+                print(' ',end='')
+                i= i+1
+        i = 1
+        while i <= 24 - (len(prev)*3): # formatting the last line
+            print (' ', end ='')
+            i= i+1
+        print('|', end ='')
+        for c in asciiList:
+            if ord(c) < 33:
+                print ('.',end ='')
+            elif ord(c) > 126:
+                print ('.',end='')
+            else:
+                print(c,end ='')
+        print('|')
+        print('%08x ' % (offset))
+        main()
+    else:
+        print('')
+
 # Encodes Base64
 def enbase64():
     encode_text = str(input(P+' Input Base64 to encode '+C+'> '+W))
@@ -112,13 +176,14 @@ def menu():
         print (C+' [1]'+P+' Decode ROT13 Cipher')
         print (C+' [2]'+P+' Convert Hexadecimal to ASCII')
         print (C+' [3]'+P+' Convert ASCII to Hexadecimal')
-        print (C+' [4]'+P+' Encode Base64')
-        print (C+' [5]'+P+' Decode Base64')
-        print (C+' [6]'+P+' Encode ASCII85')
-        print (C+' [7]'+P+' Decode ASCII85')
+        print (C+' [4]'+P+' Hexdump a file (file must be in current dir)')
+        print (C+' [5]'+P+' Encode Base64')
+        print (C+' [6]'+P+' Decode Base64')
+        print (C+' [7]'+P+' Encode ASCII85')
+        print (C+' [8]'+P+' Decode ASCII85')
         print ('  -  ')
-        print (C+' [8]'+P+' IP Subnet Calculator')
-        print (C+' [9]'+P+' Convert IP to Binary')
+        print (C+' [9]'+P+' IP Subnet Calculator')
+        print (C+' [10]'+P+' Convert IP to Binary')
 
 def main():
     print ('')
@@ -151,35 +216,41 @@ def main():
             ascii2hex()
     elif cmd == '4' :
         try:
-            enbase64()
+            hexdumper()
         except Exception:
-            print(C+'\n Incorrect format, Please try again ')
-            enbase64()
+            print(C+'\n Incorrect file, Please try again')
+            hexdumper()
     elif cmd == '5' :
         try:
+            enbase64()
+        except Exception:
+            print(C+'\n Incorrect format, Please try again ')
+            enbase64()
+    elif cmd == '6' :
+        try:
             debase64()
         except Exception:
             print(C+'\n Incorrect format, Please try again ')
             debase64()
-    elif cmd == '6' :
+    elif cmd == '7' :
         try:
             enbase85()
         except Exception:
             print(C+'\n Incorrect format, Please try again ')
             enbase85()
-    elif cmd == '7' :
+    elif cmd == '8' :
         try:
             debase85()
         except Exception:
             print(C+'\n Incorrect ASCII85, Please try again ')
             debase85()
-    elif cmd == '8' :
+    elif cmd == '9' :
         try:
             cidr()
         except Exception:
             print(C+'\n Incorrect format, Please try again ')
             cidr()
-    elif cmd == '9' :
+    elif cmd == '10' :
         try:
             ip2bin()
         except Exception:
