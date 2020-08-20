@@ -7,8 +7,8 @@ A lightweight encoding & decoding tool [v.0.0.1]
 - ROT13 Decoder
 - Hexadecimal to ASCII
 - ASCII to hexadecimal
-- Hex Dump (file must be in the current directory)
-- View MD5 & SHA1 checksum of file (file must be in the current directory)
+- Hex Dump of file
+- View MD5 & SHA1 checksum of file
 - Base64 Encoder
 - Base64 Decoder
 - Base85 (ASCII85) Encoder

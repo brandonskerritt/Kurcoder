@@ -37,11 +37,11 @@ def ascii2hex():
 
 # Hexdump
 def hexdumper():
-    filename = str(input(P+' Input filename to hexdump: '+C+'> '+W))
+    filename = (input(P+' Input filename to hexdump: '+C+'> '+W))
     try:
         filedump = open(filename, 'rb')
     except:
-        print(C+' File not found. Please verify filename, and the file is in your current directory'+W) #+W, sys.exc_info()[0])
+        print(C+' File not found. Please verify filename, or the path is correct'+W) #+W, sys.exc_info()[0])
         hexdumper()
     counter = 0
     offset = 0
@@ -101,7 +101,7 @@ def hexdumper():
 
 # Check MD5 checksum
 def md5sum():
-    filename = str(input(P+' Input filename to Checksum: '+C+'> '+W))    
+    filename = (input(P+' Input filename: '+C+'> '+W))    
     hash_md5 = hashlib.md5()
     hash_sha1 = hashlib.sha1()
     with open(filename, 'rb') as f:
@@ -189,8 +189,8 @@ def menu():
         print (C+' [1]'+P+' Decode ROT13 Cipher')
         print (C+' [2]'+P+' Convert Hexadecimal to ASCII')
         print (C+' [3]'+P+' Convert ASCII to Hexadecimal')
-        print (C+' [4]'+P+' Hexdump a file ['+C+' File must be in current dir '+P+']')
-        print (C+' [5]'+P+' MD5 & SHA1 checksum ['+C+' File must be in current dir '+P+']')
+        print (C+' [4]'+P+' Hexdump a file')
+        print (C+' [5]'+P+' MD5 & SHA1 checksum')
         print (C+' [6]'+P+' Encode Base64')
         print (C+' [7]'+P+' Decode Base64')
         print (C+' [8]'+P+' Encode ASCII85')
@@ -240,6 +240,7 @@ def main():
             md5sum()
         except Exception:
             print(C+'\n Incorrect file, Please try again ')
+            md5sum()
     elif cmd == '6' :
         try:
             enbase64()
@@ -262,7 +263,7 @@ def main():
         try:
             debase85()
         except Exception:
-            print(C+'\n Incorrect ASCII85, Please try again ')
+            print(C+'\n Incorrect format, Please try again ')
             debase85()
     elif cmd == '10' :
         try:
