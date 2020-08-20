@@ -46,7 +46,7 @@ def hexdumper():
     counter = 0
     offset = 0
     byte = filedump.read(8)
-    asciiList = []
+    ascii_list = []
     i = 1
     if len(byte) == 0:              # checks if the file is empty
         print(C+' File is empty, Please try again'+W)
@@ -57,11 +57,11 @@ def hexdumper():
         for b in byte:
             print('%02x' %b, end = ' ')
             c = chr(b)
-            asciiList.append(c)
+            ascii_list.append(c)
         print(' ', end = '')
-        if len(asciiList)>=16:      # prints ascii values of hex
+        if len(ascii_list)>=16:      # prints ascii values of hex
             print('|', end = '')
-            for c in asciiList:
+            for c in ascii_list:
                 if ord(c) < 33:
                     print ('.',end ='')
                 elif ord(c) > 126:
@@ -69,14 +69,14 @@ def hexdumper():
                 else:
                     print(c,end ='')
             print('|',end='')
-            asciiList[:] = []
+            ascii_list[:] = []
         if (offset % 16 == 0):      # pints previous bits
                 print('')
                 print('%08x ' % (offset), end = ' ')
         prev = byte                 # refreshes all values 
         byte = filedump.read(8)
         offset += int(len(byte))
-    if asciiList:                   # verifies if a list has a value inside
+    if ascii_list:                   # verifies if a list has a value inside
         if (offset % 16 < 8):       # formats the last line if less than 8 bytes are read
             while i <= 25:
                 print(' ',end='')
@@ -86,7 +86,7 @@ def hexdumper():
             print (' ', end ='')
             i= i+1
         print('|', end ='')
-        for c in asciiList:
+        for c in ascii_list:
             if ord(c) < 33:
                 print ('.',end ='')
             elif ord(c) > 126:
