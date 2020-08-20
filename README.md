@@ -7,6 +7,7 @@ A lightweight encoding & decoding tool [v.0.0.1]
 - ROT13 Decoder
 - Hexadecimal to ASCII
 - ASCII to hexadecimal
+- Hex Dump (file must be in the current directory)
 - Base64 Encoder
 - Base64 Decoder
 - Base85 (ASCII85) Encoder
