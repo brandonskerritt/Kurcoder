@@ -8,7 +8,7 @@ A lightweight encoding & decoding tool [v.0.0.1]
 - Hexadecimal to ASCII
 - ASCII to hexadecimal
 - Hex Dump of file
-- View MD5 & SHA1 checksum of file
+- View MD5, SHA1 & SHA256 checksum of file
 - Base64 Encoder
 - Base64 Decoder
 - Base85 (ASCII85) Encoder
