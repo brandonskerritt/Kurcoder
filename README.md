@@ -5,8 +5,8 @@ A lightweight encoding & decoding tool [v.0.0.1]
 
 ### Available Options:
 - ROT13 Decoder
-- Hexadecimal to ASCII
-- ASCII to hexadecimal
+- Hexadecimal & ASCII Conversion
+- Hexadecimal & Binary Conversion
 - Hex Dump of file
 - View MD5, SHA1 & SHA256 checksum of file
 - Base64 Encoder
