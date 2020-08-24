@@ -61,7 +61,31 @@ def bin2hex():
         print(str(C+' > '+(hex_out)))
         main()
 
+# Convert Hex to Decimal
+def hex2dec():
+    hex_text = str(input(P+' Input Hexadecimal: '+C+'> '+W))
+    if hex_text == 'exit' or hex_text == 'q' :
+        exit()
+    elif hex_text == 'menu' :
+        menu()
+        main()
+    else:
+        decimal_text = int(hex_text, 16)
+        print(str(C+'> '+str(decimal_text)))
+        main()
 
+# Convert Decimal to Hex
+def dec2hex():
+    dec_text = str(input(P+' Input Decimal: '+C+'> '+W))
+    if dec_text == 'quit' or dec_text == 'q' :
+        exit()
+    elif dec_text == 'menu' :
+        menu()
+        main()
+    else:
+        hex_text = hex(int(dec_text))
+        print(str(C+'> '+(hex_text)))
+        main()
 
 # Hexdump
 def hexdumper():
@@ -263,17 +287,19 @@ def menu():
         print (C+' [02]'+P+' Convert ASCII to Hexadecimal')
         print (C+' [03]'+P+' Convert Hexadecimal to Binary')
         print (C+' [04]'+P+' Convert Binary to Hexadecimal')
-        print (C+' [05]'+P+' Hexdump a file')
-        print (C+' [06]'+P+' MD5, SHA1 & SHA256 checksum')
+        print (C+' [05]'+P+' Convert Hexadecimal to Decimal')
+        print (C+' [06]'+P+' Convert Decimal to Hexadecimal')
+        print (C+' [07]'+P+' Hexdump a file')
+        print (C+' [08]'+P+' MD5, SHA1 & SHA256 checksum')
         print ('  -  ')
-        print (C+' [07]'+P+' Decode ROT13 Cipher')
-        print (C+' [08]'+P+' Encode Base64')
-        print (C+' [09]'+P+' Decode Base64')
-        print (C+' [10]'+P+' Encode ASCII85')
-        print (C+' [11]'+P+' Decode ASCII85')
+        print (C+' [09]'+P+' Decode ROT13 Cipher')
+        print (C+' [10]'+P+' Encode Base64')
+        print (C+' [11]'+P+' Decode Base64')
+        print (C+' [12]'+P+' Encode ASCII85')
+        print (C+' [13]'+P+' Decode ASCII85')
         print ('  -  ')
-        print (C+' [12]'+P+' IP Subnet Calculator')
-        print (C+' [13]'+P+' Convert IP to Binary')
+        print (C+' [14]'+P+' IP Subnet Calculator')
+        print (C+' [15]'+P+' Convert IP to Binary')
         
 
 def main():
@@ -313,53 +339,65 @@ def main():
             bin2hex()
     elif cmd == '5' or cmd == '05' :
         try:
+            hex2dec()
+        except Exception:
+            print(C+'\n Incorrect format, Please try again')
+            hex2dec()
+    elif cmd == '6' or cmd == '06' :
+        try:
+            dec2hex()
+        except Exception:
+            print(C+'\n Incorrect format, Please try again')
+            dec2hex()
+    elif cmd == '7' or cmd == '07' :
+        try:
             hexdumper()
         except Exception:
             print(C+'\n Incorrect format, Please try again')
             hexdumper()
-    elif cmd == '6' or cmd == '06' :
+    elif cmd == '8' or cmd == '08' :
         try:
             filesum()
         except Exception:
             print(C+'\n Incorrect file, Please try again')
             filesum()
-    elif cmd == '7' or cmd == '07' :
+    elif cmd == '9' or cmd == '09' :
         try:
             derot13()
         except Exception:
             print(C+'\n Incorrect file, Please try again ')
             derot13()
-    elif cmd == '8' or cmd == '08' :
-        try:
-            enbase64()
-        except Exception:
-            print(C+'\n Incorrect format, Please try again ')
-            enbase64()
-    elif cmd == '9' or cmd == '09' :
-        try:
-            debase64()
-        except Exception:
-            print(C+'\n Incorrect format, Please try again ')
-            debase64()
     elif cmd == '10' :
         try:
-            enbase85()
+            enbase64()
         except Exception:
             print(C+'\n Incorrect format, Please try again ')
-            enbase85()
+            enbase64()
     elif cmd == '11' :
         try:
+            debase64()
+        except Exception:
+            print(C+'\n Incorrect format, Please try again ')
+            debase64()
+    elif cmd == '12' :
+        try:
+            enbase85()
+        except Exception:
+            print(C+'\n Incorrect format, Please try again ')
+            enbase85()
+    elif cmd == '13' :
+        try:
             debase85()
         except Exception:
             print(C+'\n Incorrect format, Please try again ')
             debase85()
-    elif cmd == '12' :
+    elif cmd == '14' :
         try:
             cidr()
         except Exception:
             print(C+'\n Incorrect format, Please try again ')
             cidr()
-    elif cmd == '13' :
+    elif cmd == '15' :
         try:
             ip2bin()
         except Exception:
